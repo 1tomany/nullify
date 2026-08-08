@@ -85,6 +85,13 @@ $person = new Person('     ');
 if (null === $person->getName()) {
     throw new \InvalidArgumentException('Please enter a name.');
 }
+
+// These are even clearer because all ambiguity
+// around falsy or empty values has been removed:
+//
+// if (!$person->getName()) { }
+//
+// if (empty($person->getName())) { }
 ```
 
 ## Examples
