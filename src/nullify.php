@@ -4,9 +4,11 @@ use Symfony\Component\String\Exception\ExceptionInterface;
 
 use function Symfony\Component\String\u;
 
-if (!function_exists(nullify::class)) {
-    function nullify(string|Stringable|null $string, bool $trim = true): ?string
-    {
+if (!function_exists('nullify')) {
+    function nullify(
+        string|Stringable|null $string,
+        bool $trim = true,
+    ): ?string {
         if (null === $string) {
             return $string;
         }
