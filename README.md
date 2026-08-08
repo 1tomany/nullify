@@ -39,13 +39,52 @@ final readonly class Person
 }
 ```
 
-Because of the ambiguity of the `$name` property, it's cumberson to determine if it is empty or not:
+Because of the ambiguity of the `$name` property, it's cumbersome to determine if it is empty or not:
 
 ```php
+$person = new Person('     ');
+
 if (null === $person->getName() || '' === trim($person->getName())) {
     throw new \InvalidArgumentException('Please enter a name.');
 }
 ```
+
+For all practical purposes, `$name` is empty, but determining that is cumbersome.
+
+A much clearer DTO would be written like this:
+
+```
+final readonly class Person
+{
+    /**
+     * @var ?non-empty-string
+     */
+    private ?string $name;
+
+    public function __construct(
+        ?string $name,
+    ) {
+        $this->name = nullify($name);
+    }
+
+    /**
+     * @return ?non-empty-string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+}
+```
+
+It's immediately clear what data `$name` holds, and testing if `$name` is empty or not is a cinch:
+
+```
+$person = new Person('     ');
+
+if (null === $person->getName()) {
+    throw new \InvalidArgumentException('Please enter a name.');
+}
 
 ## Examples
 
@@ -72,6 +111,8 @@ if (null === $person->getName() || '' === trim($person->getName())) {
 ## License
 
 The MIT License
+
+```
 
 ```
 
