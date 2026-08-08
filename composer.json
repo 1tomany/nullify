@@ -1,0 +1,54 @@
+{
+    "name": "1tomany/nullify",
+    "description": "A very simple library to trim and nullify strings",
+    "license": "MIT",
+    "type": "library",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "keywords": [
+        "nullify",
+        "strings",
+        "unicode"
+    ],
+    "require": {
+        "php": ">=8.4",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95.18",
+        "phpstan/phpstan": "^2.2.8",
+        "phpunit/phpunit": "^13.3.0"
+    },
+    "autoload": {
+        "files": [
+            "src/nullify.php"
+        ],
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OneToMany\\Nullify\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "fix": "php-cs-fixer fix",
+        "stan": "phpstan",
+        "test": "phpunit",
+        "flat": [
+            "@fix",
+            "@stan",
+            "@test"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Vic Cherubini",
+            "email": "vcherubini@gmail.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    }
+}
