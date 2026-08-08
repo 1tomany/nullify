@@ -65,7 +65,7 @@ final class NullifyTest extends TestCase
     {
         $name = \Faker\Factory::create()->name();
 
-        $person = new class($name) {
+        $person = new readonly class($name) {
             /**
              * @var ?non-empty-string
              */
@@ -74,7 +74,7 @@ final class NullifyTest extends TestCase
             public function __construct(
                 ?string $name = null,
             ) {
-                $this->setName($name);
+                $this->name = nullify($name);
             }
 
             /**
@@ -83,13 +83,6 @@ final class NullifyTest extends TestCase
             public function getName(): ?string
             {
                 return $this->name;
-            }
-
-            public function setName(?string $name): static
-            {
-                $this->name = nullify($name);
-
-                return $this;
             }
         };
 
