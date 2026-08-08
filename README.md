@@ -53,7 +53,7 @@ For all practical purposes, `$name` is empty, but determining that is cumbersome
 
 A much clearer DTO would be written like this:
 
-```
+```php
 final readonly class Person
 {
     /**
@@ -79,7 +79,7 @@ final readonly class Person
 
 It's immediately clear what data `$name` holds, and testing if `$name` is empty or not is a cinch:
 
-```
+```php
 $person = new Person('     ');
 
 if (null === $person->getName()) {
