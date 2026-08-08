@@ -36,6 +36,7 @@ final class NullifyTest extends TestCase
         yield ['न ', false, 'न '];
         yield ['न ', false, 'न '];
         yield [' さよなら ', true, 'さよなら'];
+        yield [' 🐘🎉 ', true, '🐘🎉'];
 
         $stringable = new class(' test ') implements \Stringable {
             public function __construct(

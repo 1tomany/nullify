@@ -20,13 +20,17 @@ If the `$trim` argument is set to `false`, the string is not trimmed first. An e
 
 ## Examples
 
-| `$string` | `$trim` | `nullify()` |
-| :-------: | :-----: | :---------: |
-|  `null`   | `true`  |   `null`    |
-|   `''`    | `true`  |   `null`    |
-|   `''`    | `false` |   `null`    |
-|   `' '`   | `true`  |   `null`    |
-|   `' '`   | `false` |    `' '`    |
+| `$string`  | `$trim` | `nullify()` |
+| :--------: | :-----: | :---------: |
+|   `null`   | `true`  |   `null`    |
+|    `''`    | `true`  |   `null`    |
+|    `''`    | `false` |   `null`    |
+|   `' '`    | `true`  |   `null`    |
+|   `' '`    | `false` |    `' '`    |
+| `' PHP '`  | `true`  |   `'PHP'`   |
+| `' PHP '`  | `false` |  `' PHP '`  |
+| `' PHP '`  | `false` |  `' PHP '`  |
+| `' 🐘🎉 '` | `true`  |  `'🐘🎉'`   |
 
 ## Credits
 
