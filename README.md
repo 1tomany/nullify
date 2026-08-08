@@ -112,7 +112,6 @@ if (empty($person->getName())) {
 |  `' 0 '`   | `false` |   `' 0 '`   |
 | `' PHP '`  | `true`  |   `'PHP'`   |
 | `' PHP '`  | `false` |  `' PHP '`  |
-| `' PHP '`  | `false` |  `' PHP '`  |
 | `' 🐘🎉 '` | `true`  |  `'🐘🎉'`   |
 
 ## Credits
@@ -122,11 +121,3 @@ if (empty($person->getName())) {
 ## License
 
 The MIT License
-
-```
-
-```
-
-```
-
-```
