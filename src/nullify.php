@@ -6,7 +6,7 @@ use function Symfony\Component\String\s;
 
 if (!function_exists('nullify')) {
     /**
-     * @return ?string
+     * @return ?non-empty-string
      */
     function nullify(
         string|Stringable|null $string,
