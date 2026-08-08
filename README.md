@@ -17,3 +17,11 @@ nullify(string|\Stringable|null $string, bool $trim = true): ?string;
 ```
 
 If the `$trim` argument is set to `false`, the string is not trimmed first. An empty string will still return `null`, otherwise, the original string is returned. If an object implementing `\Stringable` is passed in, the object will be converted to a `string` first.
+
+## Credits
+
+- [Vic Cherubini](https://github.com/viccherubini), [1:N Labs, LLC](https://1tomany.com)
+
+## License
+
+The MIT License
