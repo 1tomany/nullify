@@ -26,6 +26,7 @@ final class NullifyTest extends TestCase
         yield ['', false, null];
         yield [' ', true, null];
         yield [' ', false, ' '];
+        yield ['  ', true, null];
         yield ['a', true, 'a'];
         yield ['Z', true, 'Z'];
         yield [' Z ', true, 'Z'];
@@ -35,5 +36,23 @@ final class NullifyTest extends TestCase
         yield ['न ', false, 'न '];
         yield ['न ', false, 'न '];
         yield [' さよなら ', true, 'さよなら'];
+
+        $stringable = new class(' test ') implements \Stringable {
+            public function __construct(
+                private string $value,
+            ) {
+            }
+
+            /**
+             * @see \Stringable
+             */
+            #[\Override]
+            public function __toString(): string
+            {
+                return $this->value;
+            }
+        };
+
+        yield [$stringable, true, 'test'];
     }
 }

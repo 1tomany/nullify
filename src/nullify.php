@@ -13,12 +13,8 @@ if (!function_exists('nullify')) {
             return $string;
         }
 
-        if ($string instanceof Stringable) {
-            $string = $string->__toString();
-        }
-
         try {
-            $s = s($string);
+            $s = s((string) $string);
         } catch (StringExceptionInterface) {
             return null;
         }
