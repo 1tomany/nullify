@@ -1,8 +1,8 @@
 <?php
 
-use Symfony\Component\String\Exception\ExceptionInterface;
+use Symfony\Component\String\Exception\ExceptionInterface as StringExceptionInterface;
 
-use function Symfony\Component\String\u;
+use function Symfony\Component\String\s;
 
 if (!function_exists('nullify')) {
     function nullify(
@@ -18,15 +18,15 @@ if (!function_exists('nullify')) {
         }
 
         try {
-            $us = u($string);
-        } catch (ExceptionInterface) {
+            $s = s($string);
+        } catch (StringExceptionInterface) {
             return null;
         }
 
         if (true === $trim) {
-            $us = $us->trim();
+            $s = $s->trim();
         }
 
-        return $us->isEmpty() ? null : $us->toString();
+        return $s->isEmpty() ? null : $s->toString();
     }
 }

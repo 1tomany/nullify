@@ -9,20 +9,31 @@ use PHPUnit\Framework\TestCase;
 #[Group('UnitTests')]
 final class NullifyTest extends TestCase
 {
-    #[DataProvider('providerStringAndNullifiedValue')]
+    #[DataProvider('providerStringTrimAndOutput')]
     public function testNullifyingString(
         string|\Stringable|null $string,
-        ?string $nullifiedValue,
+        bool $trim,
+        ?string $output,
     ): void {
-        $this->assertSame($nullifiedValue, nullify($string));
+        $this->assertSame($output, nullify($string, $trim));
     }
 
-    public static function providerStringAndNullifiedValue(): array
+    public static function providerStringTrimAndOutput(): \Generator
     {
-        $provider = [
-            [null, null],
-        ];
-
-        return $provider;
+        yield [null, true, null];
+        yield [null, false, null];
+        yield ['', true, null];
+        yield ['', false, null];
+        yield [' ', true, null];
+        yield [' ', false, ' '];
+        yield ['a', true, 'a'];
+        yield ['Z', true, 'Z'];
+        yield [' Z ', true, 'Z'];
+        yield [' Z ', false, ' Z '];
+        yield ['न', true, 'न'];
+        yield ['न ', true, 'न'];
+        yield ['न ', false, 'न '];
+        yield ['न ', false, 'न '];
+        yield [' さよなら ', true, 'さよなら'];
     }
 }
