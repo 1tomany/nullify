@@ -85,10 +85,11 @@ $person = new Person('     ');
 if (null === $person->getName()) {
     throw new \InvalidArgumentException('Please enter a name.');
 }
+```
 
-// These are also clear because all ambiguity
-// around falsy or empty values is removed:
+These are also clear because `nullify()` has removed any ambiguity around falsy or empty values:
 
+```php
 if (!$person->getName()) {
 }
 
