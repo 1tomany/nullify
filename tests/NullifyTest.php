@@ -63,14 +63,14 @@ final class NullifyTest extends TestCase
 
     public function testNullifyReturnsNullOrNonEmptyString(): void
     {
-        $data = new class {
-            /**
-             * @var ?non-empty-string
-             */
-            private ?string $name;
+        $name = 'Vic Cherubini';
 
+        $person = new class($name) {
+            /**
+             * @param ?non-empty-string $name
+             */
             public function __construct(
-                ?string $name = null,
+                private ?string $name = null,
             ) {
                 $this->setName($name);
             }
@@ -90,5 +90,7 @@ final class NullifyTest extends TestCase
                 return $this;
             }
         };
+
+        $this->assertSame($name, $person->getName());
     }
 }
