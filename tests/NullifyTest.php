@@ -67,10 +67,12 @@ final class NullifyTest extends TestCase
 
         $person = new class($name) {
             /**
-             * @param ?non-empty-string $name
+             * @var ?non-empty-string
              */
+            private ?string $name;
+
             public function __construct(
-                private ?string $name = null,
+                ?string $name = null,
             ) {
                 $this->setName($name);
             }
