@@ -20,7 +20,32 @@ If the `$trim` argument is set to `false`, the string is not trimmed. An empty s
 
 ## Purpose
 
-Dealing with
+Dealing with falsy and empty values in PHP has always been a challenge. If you've used the language long enough, you've probably been bitten by `empty('0')` returning `true` even though the string `'0'` clearly isn't empty. My preference is to typehint strings as `non-empty-string|null` to clearly indicate what kinds of values that variable holds.
+
+Take the following basic DTO as an example:
+
+```php
+final readonly class Person
+{
+    public function __construct(
+        private ?string $name,
+    ) {
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+}
+```
+
+Because of the ambiguity of the `$name` property, it's cumberson to determine if it is empty or not:
+
+```php
+if (null === $person->getName() || '' === trim($person->getName())) {
+    throw new \InvalidArgumentException('Please enter a name.');
+}
+```
 
 ## Examples
 
@@ -34,6 +59,7 @@ Dealing with
 |   `'0'`    | `true`  |    `'0'`    |
 |   `'0'`    | `false` |    `'0'`    |
 |  `' 0 '`   | `true`  |    `'0'`    |
+|  `' 0 '`   | `false` |   `' 0 '`   |
 | `' PHP '`  | `true`  |   `'PHP'`   |
 | `' PHP '`  | `false` |  `' PHP '`  |
 | `' PHP '`  | `false` |  `' PHP '`  |
@@ -46,3 +72,7 @@ Dealing with
 ## License
 
 The MIT License
+
+```
+
+```
