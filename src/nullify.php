@@ -26,6 +26,10 @@ if (!function_exists('nullify')) {
             $s = $s->trim();
         }
 
-        return $s->isEmpty() ? null : $s->toString();
+        if ('' !== $s->toString()) {
+            return $s->toString();
+        }
+
+        return null;
     }
 }

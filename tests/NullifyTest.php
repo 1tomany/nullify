@@ -63,7 +63,7 @@ final class NullifyTest extends TestCase
 
     public function testNullifyReturnsNullOrNonEmptyString(): void
     {
-        $data = new class() {
+        $data = new class {
             /**
              * @var ?non-empty-string
              */
