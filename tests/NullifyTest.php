@@ -63,7 +63,7 @@ final class NullifyTest extends TestCase
 
     public function testNullifyReturnsNullOrNonEmptyString(): void
     {
-        $name = 'Vic Cherubini';
+        $name = \Faker\Factory::create()->name();
 
         $person = new class($name) {
             /**
