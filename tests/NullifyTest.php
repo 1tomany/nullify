@@ -27,6 +27,10 @@ final class NullifyTest extends TestCase
         yield [' ', true, null];
         yield [' ', false, ' '];
         yield ['  ', true, null];
+        yield ['0', true, '0'];
+        yield ['0', false, '0'];
+        yield [' 0 ', true, '0'];
+        yield [' 0 ', false, ' 0 '];
         yield ['a', true, 'a'];
         yield ['Z', true, 'Z'];
         yield [' Z ', true, 'Z'];

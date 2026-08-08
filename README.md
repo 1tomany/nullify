@@ -16,7 +16,11 @@ The `nullify()` function has the following signature:
 nullify(string|\Stringable|null $string, bool $trim = true): ?string;
 ```
 
-If the `$trim` argument is set to `false`, the string is not trimmed first. An empty string will still return `null`, otherwise, the original string is returned. If an object implementing `\Stringable` is passed in, the object will be converted to a `string` first.
+If the `$trim` argument is set to `false`, the string is not trimmed. An empty string will still return `null`, otherwise, the original string is returned. If an object implementing `\Stringable` is passed in, the object will be converted to a `string` first.
+
+## Purpose
+
+Dealing with
 
 ## Examples
 
@@ -27,6 +31,9 @@ If the `$trim` argument is set to `false`, the string is not trimmed first. An e
 |    `''`    | `false` |   `null`    |
 |   `' '`    | `true`  |   `null`    |
 |   `' '`    | `false` |    `' '`    |
+|   `'0'`    | `true`  |    `'0'`    |
+|   `'0'`    | `false` |    `'0'`    |
+|  `' 0 '`   | `true`  |    `'0'`    |
 | `' PHP '`  | `true`  |   `'PHP'`   |
 | `' PHP '`  | `false` |  `' PHP '`  |
 | `' PHP '`  | `false` |  `' PHP '`  |
