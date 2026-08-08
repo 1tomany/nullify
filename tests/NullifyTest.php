@@ -60,4 +60,35 @@ final class NullifyTest extends TestCase
 
         yield [$stringable, true, 'test'];
     }
+
+    public function testNullifyReturnsNullOrNonEmptyString(): void
+    {
+        $data = new class() {
+            /**
+             * @var ?non-empty-string
+             */
+            private ?string $name;
+
+            public function __construct(
+                ?string $name = null,
+            ) {
+                $this->setName($name);
+            }
+
+            /**
+             * @return ?non-empty-string
+             */
+            public function getName(): ?string
+            {
+                return $this->name;
+            }
+
+            public function setName(?string $name): static
+            {
+                $this->name = nullify($name);
+
+                return $this;
+            }
+        };
+    }
 }
