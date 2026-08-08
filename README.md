@@ -85,6 +85,7 @@ $person = new Person('     ');
 if (null === $person->getName()) {
     throw new \InvalidArgumentException('Please enter a name.');
 }
+```
 
 ## Examples
 
@@ -111,6 +112,8 @@ if (null === $person->getName()) {
 ## License
 
 The MIT License
+
+```
 
 ```
 
