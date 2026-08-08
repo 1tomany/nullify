@@ -5,6 +5,9 @@ use Symfony\Component\String\Exception\ExceptionInterface as StringExceptionInte
 use function Symfony\Component\String\s;
 
 if (!function_exists('nullify')) {
+    /**
+     * @return ?non-empty-string
+     */
     function nullify(
         string|Stringable|null $string,
         bool $trim = true,
@@ -23,6 +26,10 @@ if (!function_exists('nullify')) {
             $s = $s->trim();
         }
 
-        return $s->isEmpty() ? null : $s->toString();
+        if ('' !== $s->toString()) {
+            return $s->toString();
+        }
+
+        return null;
     }
 }

@@ -9,6 +9,13 @@ use PHPUnit\Framework\TestCase;
 #[Group('UnitTests')]
 final class NullifyTest extends TestCase
 {
+    private static \Faker\Generator $faker;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$faker = \Faker\Factory::create();
+    }
+
     #[DataProvider('providerStringTrimAndOutput')]
     public function testNullifyingString(
         string|\Stringable|null $string,
@@ -59,5 +66,34 @@ final class NullifyTest extends TestCase
         };
 
         yield [$stringable, true, 'test'];
+    }
+
+    public function testNullifyReturnsNullOrNonEmptyString(): void
+    {
+        $name = self::$faker->name();
+        $this->assertNotEmpty($name);
+
+        $person = new readonly class($name) {
+            /**
+             * @var ?non-empty-string
+             */
+            private ?string $name;
+
+            public function __construct(
+                ?string $name = null,
+            ) {
+                $this->name = nullify($name);
+            }
+
+            /**
+             * @return ?non-empty-string
+             */
+            public function getName(): ?string
+            {
+                return $this->name;
+            }
+        };
+
+        $this->assertSame($name, $person->getName());
     }
 }
